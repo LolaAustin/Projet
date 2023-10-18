@@ -5,16 +5,29 @@ import java.util.Scanner;
 
 import data.ActionBDDImpl;
 
+/**
+ * Le menu proposé à l'utilisateur 
+ *
+ */
 public class Menu {
 
     private ActionBDDImpl Action;
 
+    /**
+     * Constructeur de l'object de class Menu. 
+     * @param action
+     * @throws Exception
+     */
     public Menu(ActionBDDImpl action) throws Exception {
         this.Action = action;
         Action.connect();
        
     }
 
+    /**
+     * 
+     * @throws Exception
+     */
     public void displayMenu() throws Exception {
         Scanner scan = new Scanner(System.in);
         int userInput = 0;
@@ -85,11 +98,12 @@ public class Menu {
                 break;
             case 6:
             	Action.disconnect();
+            	scan.close();
                 break;
             default:
                 break;
         }
-
+        
     }
 
 }

@@ -35,9 +35,9 @@ public class ActionBDDImpl implements ActionBDD{
     public void connect() throws Exception {
         
         //con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bdtpjava", "root", "emiratesA380");
-    	//con = DriverManager.getConnection("jdbc:mysql://localhost/bdtpjava?useSSL=false","root","");
+    	con = DriverManager.getConnection("jdbc:mysql://localhost/bdtpjava?useSSL=false","root","");
     	
-    	connection();    	
+    	//connection();    	
     	
     	//con = DriverManager.getConnection("jdbc:mysql://82.124.69.153/ProjetJAVA","SOPHIE","ProjetJava2023");
     	
@@ -139,24 +139,26 @@ public class ActionBDDImpl implements ActionBDD{
      * @throws SQLException
      */
     public void afficher_id (int id ) throws SQLException {
-    	preparedStatement = con.prepareStatement("Select * From Programmeur WHERE id =" + id );
-        resultSet  = preparedStatement.executeQuery(); 
-    	while (resultSet.next()) {
-    		int r_id = resultSet.getInt("id"); 
-    		String nom = resultSet.getString("NOM");
-            String prenom = resultSet.getString("PRENOM");
-            int anNaissance = resultSet.getInt("NAISSANCE");
-            float salaire = resultSet.getFloat("SALAIRE");
-            float prime = resultSet.getFloat("PRIME");
-            String pseudo = resultSet.getString("PSEUDO");
-            String responsable = resultSet.getString("RESPONSABLE"); 
-            String hobby = resultSet.getString("HOBBY"); 
-            String adresse = resultSet.getString("ADRESSE"); 
+    	if (verification_id(id)) {
+    		preparedStatement = con.prepareStatement("Select * From Programmeur WHERE id =" + id );
+    		resultSet  = preparedStatement.executeQuery(); 
+    		while (resultSet.next()) {
+    			int r_id = resultSet.getInt("id"); 
+    			String nom = resultSet.getString("NOM");
+    			String prenom = resultSet.getString("PRENOM");
+    			int anNaissance = resultSet.getInt("NAISSANCE");
+    			float salaire = resultSet.getFloat("SALAIRE");
+    			float prime = resultSet.getFloat("PRIME");
+    			String pseudo = resultSet.getString("PSEUDO");
+    			String responsable = resultSet.getString("RESPONSABLE"); 
+    			String hobby = resultSet.getString("HOBBY"); 
+    			String adresse = resultSet.getString("ADRESSE"); 
             
-            Programmeur temp = new Programmeur(r_id, nom, prenom, anNaissance, prime, salaire, pseudo, responsable, hobby, adresse);
+    			Programmeur temp = new Programmeur(r_id, nom, prenom, anNaissance, prime, salaire, pseudo, responsable, hobby, adresse);
             
-            System.out.println(temp.toString());
-    	}
+    			System.out.println(temp.toString());
+    		}
+    	} else System.err.println("Le programmeur que vous souhaitez voir n'existe pas.");
     }
     
     /**
@@ -165,7 +167,8 @@ public class ActionBDDImpl implements ActionBDD{
      * @throws SQLException
      */
     public void supprimer (int id ) throws SQLException {
-    	setPreparedStatementAndResultSet("DELETED FROM Programmeur WHERE id =" + id );
+    	if (verification_id(id)) setPreparedStatementAndResultSet("DELETED FROM Programmeur WHERE id =" + id );
+    	else System.err.println("Le programmeur que vous souhaitez supprimer n'existe pas");
     }
     
     /**
@@ -209,11 +212,28 @@ public class ActionBDDImpl implements ActionBDD{
      * @throws Exception
      */
     public void modifier_salaire (int id, float salaire) throws Exception {
-    	preparedStatement = con.prepareStatement("UPDATE Programmeur SET salaire = "+ salaire + " WHERE id = " + id );
-    	@SuppressWarnings("unused")
-		long test = preparedStatement.executeLargeUpdate(); 
-    	listeProgrammeurs = new ArrayList<>(); 
-    	insertProgrammeur(); 
+    	if (verification_id(id)) {
+    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET salaire = "+ salaire + " WHERE id = " + id );
+        	@SuppressWarnings("unused")
+    		long test = preparedStatement.executeLargeUpdate(); 
+        	listeProgrammeurs = new ArrayList<>(); 
+        	insertProgrammeur(); 
+    	}
+    	else System.err.println("Le programmeur dont vous souhaitez modifier le salaire n'existe pas. ");
     }
+    
+    
+    /**
+     * Vérifie si l'id existe dans la table
+     * @param id donné par l'utilisateur
+     * @return
+     */
+    public boolean verification_id (int id) {
+    	for (Programmeur programmeur : listeProgrammeurs) {
+    		if (programmeur.id == id) return true; 
+    	}
+    	return false; 
+    }
+    
 
 }

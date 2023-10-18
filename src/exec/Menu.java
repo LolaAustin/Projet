@@ -105,5 +105,36 @@ public class Menu {
         }
         
     }
+    
+    public void displayMenu_Modification () throws Exception {
+    	Scanner scan = new Scanner(System.in);
+        int userInput = 0;
+
+        System.out.println("<<<<<<<<Menu>>>>>>>>");
+        System.out.println("1. Afficher tous les programmeurs");
+        System.out.println("2. Afficher un programmeur");
+        System.out.println("3. Supprimer un programmeur");
+        System.out.println("4. Ajouter un programmeur");
+        System.out.println("5. Modifier le salaire");
+        System.out.println("6. Quitter le programme");
+        System.out.println("Entrez votre choix : ");
+        userInput = scan.nextInt();
+
+        int id=0; 
+        
+        switch (userInput) {
+			case 1: {
+				System.out.println("De quel programmeur voulez-vous modifier le salaire ? \n Son id :");
+            	id = scan.nextInt(); 
+            	System.out.println("Quel est son nouveau salaire ? \n Son salaire : ");
+            	float salaire_2 = scan.nextFloat(); 
+            	Action.modifier_salaire(id, salaire_2);
+            	displayMenu();
+				break; 
+			}
+			default:
+				break; 
+		}
+    }
 
 }

@@ -222,6 +222,141 @@ public class ActionBDDImpl implements ActionBDD{
     	else System.err.println("Le programmeur dont vous souhaitez modifier le salaire n'existe pas. ");
     }
     
+    /**
+     * Modifie le nom d'un programmeur choisi
+     * @param id 
+     * @param nom son nouveau nom
+     * @throws Exception
+     */
+    public void modifier_nom (int id, String nom ) throws Exception {
+    	if (verification_id(id)) {
+    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET nom = "+ nom + " WHERE id = " + id );
+        	@SuppressWarnings("unused")
+    		long test = preparedStatement.executeLargeUpdate(); 
+        	listeProgrammeurs = new ArrayList<>(); 
+        	insertProgrammeur(); 
+    	}
+    	else System.err.println("Le programmeur dont vous souhaitez modifier le nom n'existe pas. ");
+    }
+    
+    /**
+     * Modifie le nom d'un programmeur choisi
+     * @param id 
+     * @param prenom son nouveau nom
+     * @throws Exception
+     */
+    public void modifier_prenom (int id, String prenom ) throws Exception {
+    	if (verification_id(id)) {
+    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET prenom = "+ prenom + " WHERE id = " + id );
+        	@SuppressWarnings("unused")
+    		long test = preparedStatement.executeLargeUpdate(); 
+        	listeProgrammeurs = new ArrayList<>(); 
+        	insertProgrammeur(); 
+    	}
+    	else System.err.println("Le programmeur dont vous souhaitez modifier le prénom n'existe pas. ");
+    }
+    
+    /**
+     * Modifie le pseudo du programmeur choisi
+     * @param id
+     * @param pseudo
+     * @throws Exception
+     */
+    public void modifier_pseudo (int id, String pseudo ) throws Exception {
+    	if (verification_id(id)) {
+    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET pseudo = "+ pseudo + " WHERE id = " + id );
+        	@SuppressWarnings("unused")
+    		long test = preparedStatement.executeLargeUpdate(); 
+        	listeProgrammeurs = new ArrayList<>(); 
+        	insertProgrammeur(); 
+    	}
+    	else System.err.println("Le programmeur dont vous souhaitez modifier le pseudo n'existe pas. ");
+    }
+    
+    /**
+     * Modifie le responsable du programmeur choisi 
+     * @param id
+     * @param responsable
+     * @throws Exception
+     */
+    public void modifier_responsable (int id, String responsable ) throws Exception {
+    	if (verification_id(id)) {
+    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET responsable = "+ responsable + " WHERE id = " + id );
+        	@SuppressWarnings("unused")
+    		long test = preparedStatement.executeLargeUpdate(); 
+        	listeProgrammeurs = new ArrayList<>(); 
+        	insertProgrammeur(); 
+    	}
+    	else System.err.println("Le programmeur dont vous souhaitez modifier le responsable n'existe pas. ");
+    }
+    
+    /**
+     * Modifie le hobby du programmeur choisi 
+     * @param id
+     * @param hobby
+     * @throws Exception
+     */
+    public void modifier_hobby (int id, String hobby ) throws Exception {
+    	if (verification_id(id)) {
+    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET hobby = "+ hobby + " WHERE id = " + id );
+        	@SuppressWarnings("unused")
+    		long test = preparedStatement.executeLargeUpdate(); 
+        	listeProgrammeurs = new ArrayList<>(); 
+        	insertProgrammeur(); 
+    	}
+    	else System.err.println("Le programmeur dont vous souhaitez modifier le hobby n'existe pas. ");
+    }
+    
+    /**
+     * Modifie l'adresse du programmeur choisi 
+     * @param id
+     * @param adresse
+     * @throws Exception
+     */
+    public void modifier_adresse (int id, String adresse ) throws Exception {
+    	if (verification_id(id)) {
+    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET adresse = "+ adresse + " WHERE id = " + id );
+        	@SuppressWarnings("unused")
+    		long test = preparedStatement.executeLargeUpdate(); 
+        	listeProgrammeurs = new ArrayList<>(); 
+        	insertProgrammeur(); 
+    	}
+    	else System.err.println("Le programmeur dont vous souhaitez modifier l'adresse n'existe pas. ");
+    }
+    
+    /**
+     * Modifie l'année de naissance du programmeur choisi 
+     * @param id
+     * @param naissance
+     * @throws Exception
+     */
+    public void modifier_naissance (int id, int naissance ) throws Exception {
+    	if (verification_id(id)) {
+    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET naissance = "+ naissance + " WHERE id = " + id );
+        	@SuppressWarnings("unused")
+    		long test = preparedStatement.executeLargeUpdate(); 
+        	listeProgrammeurs = new ArrayList<>(); 
+        	insertProgrammeur(); 
+    	}
+    	else System.err.println("Le programmeur dont vous souhaitez modifier l'année de naissance n'existe pas. ");
+    }
+    
+    /**
+     * Modifie la prime du programmeur choisi 
+     * @param id
+     * @param prime
+     * @throws Exception
+     */
+    public void modifier_prime (int id, int prime ) throws Exception {
+    	if (verification_id(id)) {
+    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET prime = "+ prime + " WHERE id = " + id );
+        	@SuppressWarnings("unused")
+    		long test = preparedStatement.executeLargeUpdate(); 
+        	listeProgrammeurs = new ArrayList<>(); 
+        	insertProgrammeur(); 
+    	}
+    	else System.err.println("Le programmeur dont vous souhaitez modifier la prime n'existe pas. ");
+    }
     
     /**
      * Vérifie si l'id existe dans la table

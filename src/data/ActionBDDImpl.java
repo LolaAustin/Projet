@@ -238,7 +238,7 @@ public class ActionBDDImpl implements ActionBDD{
      */
     public void modifier_nom (int id, String nom ) throws Exception {
     	if (verification_id(id)) {
-    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET nom = "+ nom + " WHERE id = " + id );
+    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET nom = '"+ nom + "' WHERE id = " + id );
         	@SuppressWarnings("unused")
     		long test = preparedStatement.executeLargeUpdate(); 
         	listeProgrammeurs = new ArrayList<>(); 
@@ -255,7 +255,7 @@ public class ActionBDDImpl implements ActionBDD{
      */
     public void modifier_prenom (int id, String prenom ) throws Exception {
     	if (verification_id(id)) {
-    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET prenom = "+ prenom + " WHERE id = " + id );
+    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET prenom = '"+ prenom + "' WHERE id = " + id );
         	@SuppressWarnings("unused")
     		long test = preparedStatement.executeLargeUpdate(); 
         	listeProgrammeurs = new ArrayList<>(); 
@@ -272,7 +272,7 @@ public class ActionBDDImpl implements ActionBDD{
      */
     public void modifier_pseudo (int id, String pseudo ) throws Exception {
     	if (verification_id(id)) {
-    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET pseudo = "+ pseudo + " WHERE id = " + id );
+    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET pseudo = '"+ pseudo + "' WHERE id = " + id );
         	@SuppressWarnings("unused")
     		long test = preparedStatement.executeLargeUpdate(); 
         	listeProgrammeurs = new ArrayList<>(); 
@@ -289,7 +289,7 @@ public class ActionBDDImpl implements ActionBDD{
      */
     public void modifier_responsable (int id, String responsable ) throws Exception {
     	if (verification_id(id)) {
-    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET responsable = "+ responsable + " WHERE id = " + id );
+    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET responsable = '"+ responsable + "' WHERE id = " + id );
         	@SuppressWarnings("unused")
     		long test = preparedStatement.executeLargeUpdate(); 
         	listeProgrammeurs = new ArrayList<>(); 
@@ -306,7 +306,7 @@ public class ActionBDDImpl implements ActionBDD{
      */
     public void modifier_hobby (int id, String hobby ) throws Exception {
     	if (verification_id(id)) {
-    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET hobby = "+ hobby + " WHERE id = " + id );
+    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET hobby = '"+ hobby + "' WHERE id = " + id );
         	@SuppressWarnings("unused")
     		long test = preparedStatement.executeLargeUpdate(); 
         	listeProgrammeurs = new ArrayList<>(); 
@@ -323,7 +323,7 @@ public class ActionBDDImpl implements ActionBDD{
      */
     public void modifier_adresse (int id, String adresse ) throws Exception {
     	if (verification_id(id)) {
-    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET adresse = "+ adresse + " WHERE id = " + id );
+    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET adresse = '"+ adresse + "' WHERE id = " + id );
         	@SuppressWarnings("unused")
     		long test = preparedStatement.executeLargeUpdate(); 
         	listeProgrammeurs = new ArrayList<>(); 

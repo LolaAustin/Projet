@@ -96,8 +96,8 @@ public class Menu {
             	displayMenu();
                 break;
             case 6:
-            	scan.close();
             	Action.disconnect();
+            	scan.close();
                 break;
             default:
                 break;
@@ -124,8 +124,10 @@ public class Menu {
 
         int id=0; 
         
-        System.out.println("De quel programmeur voulez-vous modifier des informations ? \n Son id :");
-        id = scan.nextInt();
+        if ((0<userInput)&&(userInput<10)) {
+        	System.out.println("De quel programmeur voulez-vous modifier des informations ? \n Son id :");
+        	id = scan.nextInt();
+        }
         
         switch (userInput) {
 			case 1: 
@@ -155,7 +157,7 @@ public class Menu {
 			case 5: 
 				System.out.println("Quel est sa nouvelle prime ? \n La prime : ");
             	int prime = scan.nextInt(); 
-            	Action.modifier_naissance(id, prime);;
+            	Action.modifier_prime(id, prime);;
             	displayMenu();
 				break;
 			case 6: 
@@ -178,7 +180,7 @@ public class Menu {
 				break;
 			case 9: 
 				System.out.println("Quel est sa nouvelle adresse ? \n L'adresse : ");
-            	String adresse = scan.nextLine(); 
+            	String adresse = scan.next(); 
             	Action.modifier_adresse(id, adresse);
             	displayMenu();
 				break;

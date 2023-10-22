@@ -149,7 +149,7 @@ public class Personne {
 	
 	/**
 	 * 
-	 * @param hobby The hobby of the person 
+	 * @param id Set the id of the person 
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -170,7 +170,7 @@ public class Personne {
      * @return A string representing the person.
      */
     public String toString() {
-        return "Id : " + this.id+  ", Last Name: " + this.nom + ", First Name: " + this.prenom + ", Age: " + calculerAge() + " , " + "Hobby: " + this.hobby + ", Adresse: " + this.adresse;
+        return "Id : " + this.id+  ", Last Name: " + this.nom + ", First Name: " + this.prenom + ", Age: " + calculerAge() + " , " + "Hobby: " + this.hobby + ", Adresse :" + this.adresse;
     }
 
     /**

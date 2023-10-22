@@ -170,7 +170,7 @@ public class Personne {
      * @return A string representing the person.
      */
     public String toString() {
-        return "Id : " + this.id+  ", Last Name: " + this.nom + ", First Name: " + this.prenom + ", Age: " + calculerAge() + " , ";
+        return "Id : " + this.id+  ", Last Name: " + this.nom + ", First Name: " + this.prenom + ", Age: " + calculerAge() + " , " + "Hobby: " + this.hobby + ", Adresse: " + this.adresse;
     }
 
     /**

@@ -157,7 +157,7 @@ public class Programmeur extends Personne {
      * @return A string representing the programmer.
      */
     public String toString(){
-        return super.toString() + "Prime: " + getPrime() + ", Salaire: " + getSalaire() + ", Pseudo: " + getPseudo();
+        return super.toString() + ", "+ "Prime: " + getPrime() + ", Salaire: " + getSalaire() + ", Pseudo: " + getPseudo() + " ,Responsable: " + getResponsable() ;
     }
 
     /**

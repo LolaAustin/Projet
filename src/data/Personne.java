@@ -33,7 +33,7 @@ public class Personne {
      * @param date  The birth year of the person.
      */
     public Personne(int id, String n, String p, int date) {
-    	
+    	setId(id);
         setPrenom(p);
         setNom(n);
         setAnNaissance(date);
@@ -47,6 +47,7 @@ public class Personne {
      * @param date  The birth year of the person.
      */
     public Personne(int id, String n, String p, int date, String adresse, String Hobby) {
+    	setId(id);
         setPrenom(p);
         setNom(n);
         setAnNaissance(date);
@@ -145,6 +146,14 @@ public class Personne {
 	public void setHobby(String hobby) {
 		this.hobby = hobby;
 	}
+	
+	/**
+	 * 
+	 * @param id Set the id of the person 
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	/**
      * Calculates the age of the person by subtracting the birth year from the current year (2023).
@@ -161,7 +170,7 @@ public class Personne {
      * @return A string representing the person.
      */
     public String toString() {
-        return "Last Name: " + this.nom + ", First Name: " + this.prenom + ", Age: " + calculerAge();
+        return "Id : " + this.id+  ", Last Name: " + this.nom + ", First Name: " + this.prenom + ", Age: " + calculerAge() + " , " + "Hobby: " + this.hobby + ", Adresse :" + this.adresse;
     }
 
     /**

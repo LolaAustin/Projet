@@ -2,6 +2,8 @@ package data;
 
 import java.util.Properties;
 
+import javax.swing.JOptionPane;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -57,7 +59,7 @@ public class ActionBDDImpl implements ActionBDD{
      * 
      */
     public void connection () throws SQLException {
-    	String url = "jdbc:mysql://90.7.248.79:6368/ProjetJAVA?useSSL=false";
+    	String url = "jdbc:mysql://90.7.248.79:6368/ProjetJAVA?allowPublicKeyRetrieval=true&useSSL=false";
         String utilisateur = "NICOLAS";
         String motDePasse = "VotreMotDePasse"; // Remplacez par votre mot de passe
 
@@ -127,10 +129,12 @@ public class ActionBDDImpl implements ActionBDD{
     /**
      * Affiche à l'écran tout les programmeurs de la liste. 
      */
-    public void afficher() {
+    public String afficher() {
+        StringBuilder result = new StringBuilder();
         for (Programmeur programmeur : listeProgrammeurs) {
-            programmeur.afficher();
+            result.append(programmeur.toString()).append("\n");
         }
+        return result.toString();
     }
     
     /**
@@ -138,7 +142,7 @@ public class ActionBDDImpl implements ActionBDD{
      * @param id correspond à celui du programmeur
      * @throws SQLException
      */
-    public void afficher_id (int id ) throws SQLException {
+    public String afficher_id (int id ) throws SQLException {
     	if (verification_id(id)) {
     		preparedStatement = con.prepareStatement("Select * From Programmeur WHERE id =" + id );
     		resultSet  = preparedStatement.executeQuery(); 
@@ -156,9 +160,13 @@ public class ActionBDDImpl implements ActionBDD{
             
     			Programmeur temp = new Programmeur(r_id, nom, prenom, anNaissance, prime, salaire, pseudo, responsable, hobby, adresse);
             
-    			System.out.println(temp.toString());
+    			return temp.toString();
     		}
-    	} else System.err.println("Le programmeur que vous souhaitez voir n'existe pas.");
+    	} else {
+            JOptionPane.showMessageDialog(null, "Le programmeur que vous souhaitez voir n'existe pas", "Error", JOptionPane.INFORMATION_MESSAGE);
+            return null;
+        }
+        return null;
     }
     
     /**
@@ -173,10 +181,10 @@ public class ActionBDDImpl implements ActionBDD{
     		long test = preparedStatement.executeLargeUpdate(); 
         	listeProgrammeurs = new ArrayList<>(); 
         	insertProgrammeur(); 
-        	System.err.println("Le programmeur a bien été supprimé.");
+        	JOptionPane.showMessageDialog(null, "Le programmeur a été supprimé avec succès", "Success", JOptionPane.INFORMATION_MESSAGE);
     	}
     		//setPreparedStatementAndResultSet("DELETED FROM Programmeur WHERE id =" + id );
-    	else System.err.println("Le programmeur que vous souhaitez supprimer n'existe pas");
+    	else JOptionPane.showMessageDialog(null, "Le programmeur que vous souhaitez supprimer n'existe pas", "Error", JOptionPane.INFORMATION_MESSAGE);
     }
     
     /**
@@ -352,12 +360,12 @@ public class ActionBDDImpl implements ActionBDD{
     /**
      * Modifie la prime du programmeur choisi 
      * @param id
-     * @param prime
+     * @param newPrime
      * @throws Exception
      */
-    public void modifier_prime (int id, int prime ) throws Exception {
+    public void modifier_prime (int id, int newPrime ) throws Exception {
     	if (verification_id(id)) {
-    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET prime = "+ prime + " WHERE id = " + id );
+    		preparedStatement = con.prepareStatement("UPDATE Programmeur SET prime = "+ newPrime + " WHERE id = " + id );
         	@SuppressWarnings("unused")
     		long test = preparedStatement.executeLargeUpdate(); 
         	listeProgrammeurs = new ArrayList<>(); 
